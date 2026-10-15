@@ -179,7 +179,7 @@
   }
 
   .prose blockquote {
-    @apply border-l-4 border-amber-500! pl-4 italic bg-muted/50 p-4 rounded-md rounded-l-none;
+    @apply border-l-4 border-foreground! pl-4 italic bg-muted/50 p-4 rounded-md rounded-l-none;
   }
 
   .prose blockquote p {

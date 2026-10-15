@@ -1,0 +1,38 @@
+---
+// Hero copy is a draft -- pick your favorite or edit directly. Alternates:
+//   B: "I build with AI." / "A running record of what I've shipped - websites,
+//      campaigns, and now, an AI-native platform built solo."
+//   C: "I build with AI for people doing work that matters." / "Nonprofits,
+//      founders, and mission-driven teams - see the projects, then the
+//      thinking behind them."
+import { getCollection } from "astro:content";
+import WorkMedia from "@/components/work/WorkMedia.astro";
+import BrowserFrame from "@/components/BrowserFrame.astro";
+
+const allWork = await getCollection("work");
+const hero = allWork.find((entry) => entry.id === "wildari-planet") ?? allWork[0];
+---
+
+<section class="mx-auto max-w-6xl px-6 pt-14 pb-16 sm:pt-20 sm:pb-20">
+  <div class="max-w-2xl">
+    <h1 class="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+      Full‑Stack Developer &amp; eCRM Specialist for Nonprofits passionate about animal welfare
+    </h1>
+    <p class="mt-4 text-lg text-muted-foreground">
+      Websites, platforms, campaigns, donation forms, advocacy pages, email templates, and campaign tools - built with HTML, CSS, JavaScript, and AI-assisted development (Claude Code) for nonprofits.
+    </p>
+  </div>
+
+  <a href={`/work/${hero.id}`} class="mt-10 block">
+    <BrowserFrame class="aspect-[16/9] w-full sm:aspect-[21/9]">
+      <WorkMedia
+        title={hero.data.title}
+        thumbnail={hero.data.heroVideo ? undefined : hero.data.thumbnail}
+        thumbnailVideo={hero.data.heroVideo ?? hero.data.thumbnailVideo}
+        class="size-full"
+      />
+    </BrowserFrame>
+  </a>
+  <!-- Fixed caption: the Wildari case study's own title/tagline are longer page headings. -->
+  <p class="mt-2 text-sm text-muted-foreground">Wildari Planet - A full-stack platform built end-to-end with Astro.js, Drupal, and Claude Code.</p>
+</section>

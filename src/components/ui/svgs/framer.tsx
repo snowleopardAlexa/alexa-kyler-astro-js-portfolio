@@ -4,7 +4,7 @@ import type { SVGProps } from "react";
 export const Framer = (props: SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 24 24"
-    fill="#000000"
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
     role="img"
     {...props}

@@ -2,7 +2,8 @@
 import "../styles/global.css";
 import { DATA } from "@/data/resume";
 import { CONFIG } from "@/data/config";
-import NavbarIsland from "@/components/NavbarIsland";
+import Header from "@/components/site/Header.astro";
+import Footer from "@/components/site/Footer.astro";
 
 interface Props {
   title?: string;
@@ -136,13 +137,11 @@ const { baseFontSize } = CONFIG.typography;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
   </head>
-  <body class="min-h-screen bg-background font-sans antialiased relative">
-    <!-- Main content wrapper - matches template's z-10 container exactly -->
-    <div class="relative z-10 max-w-2xl mx-auto py-12 pb-24 sm:py-24 px-6">
+  <body class="min-h-screen bg-background font-sans antialiased relative flex flex-col">
+    <Header />
+    <div class="relative z-10 flex-1">
       <slot />
     </div>
-
-    <!-- Navbar: ThemeProvider + TooltipProvider + Navbar all in one React island -->
-    <NavbarIsland client:load />
+    <Footer />
   </body>
 </html>

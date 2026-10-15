@@ -1,0 +1,29 @@
+---
+import PlaceholderThumb from "@/components/PlaceholderThumb.astro";
+
+interface Props {
+  title: string;
+  thumbnail?: string;
+  thumbnailVideo?: string;
+  class?: string;
+  // Center + letterbox the thumbnail instead of full-bleed cropping it --
+  // for small logo marks (like the temporary Wildari Planet placeholder)
+  // rather than photo/video stills.
+  contain?: boolean;
+}
+const { title, thumbnail, thumbnailVideo, class: className = "", contain = false } = Astro.props;
+---
+
+{
+  thumbnail && contain ? (
+    <div class={`flex items-center justify-center bg-white p-10 sm:p-14 ${className}`}>
+      <img src={thumbnail} alt={title} class="size-full object-contain" loading="lazy" />
+    </div>
+  ) : thumbnail ? (
+    <img src={thumbnail} alt={title} class={`object-cover ${className}`} loading="lazy" />
+  ) : thumbnailVideo ? (
+    <video src={thumbnailVideo} class={`object-cover ${className}`} autoplay loop muted playsinline preload="metadata" />
+  ) : (
+    <PlaceholderThumb label={title} class={className} />
+  )
+}

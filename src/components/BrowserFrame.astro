@@ -1,0 +1,30 @@
+---
+// Reusable "browser window" chrome wrapping every project image on the site
+// (Featured Work cards, the /work grid, and case-study hero images) so every
+// project reads consistently regardless of its own screenshot's colors.
+// Content goes in the default slot -- WorkMedia (image/video/placeholder) is
+// the usual fill, but any image works.
+interface Props {
+  tilt?: boolean; // homepage Featured Work variant only; case studies + grid stay flat
+  class?: string; // controls sizing/aspect-ratio on the frame itself
+}
+const { tilt = false, class: className = "" } = Astro.props;
+---
+
+<div class={`browser-frame flex flex-col overflow-hidden rounded-xl border border-border bg-background shadow-[0_20px_45px_-28px_rgba(0,0,0,0.35)] ${tilt ? "browser-frame--tilt" : ""} ${className}`}>
+  <div class="flex h-7 shrink-0 items-center gap-1.5 border-b border-border bg-muted/70 px-3 sm:h-8">
+    <span class="size-2 rounded-full bg-foreground/20"></span>
+    <span class="size-2 rounded-full bg-foreground/20"></span>
+    <span class="size-2 rounded-full bg-foreground/20"></span>
+    <span class="ml-2 h-3 w-full max-w-40 rounded-full bg-foreground/10"></span>
+  </div>
+  <div class="relative min-h-0 flex-1 overflow-hidden">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .browser-frame--tilt {
+    transform: perspective(1400px) rotateY(-6deg) rotateX(1.5deg);
+  }
+</style>

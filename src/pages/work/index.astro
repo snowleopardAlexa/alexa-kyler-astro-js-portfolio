@@ -1,0 +1,88 @@
+---
+export const prerender = true;
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import CaseStudyCard from "@/components/work/CaseStudyCard.astro";
+import { FEATURED_CARDS } from "@/data/featured";
+
+const allWork = (await getCollection("work")).sort((a, b) => a.data.order - b.data.order);
+
+// Only these projects are listed under Legacy Builds, with card-only copy
+// (each case study page keeps its own frontmatter tagline).
+const RESEARCH_TAGS = ["Figma", "Prototyping", "Wireframing", "UI Design", "Qualitative & Quantitative Research", "User Testing"];
+// Legacy projects link straight to their Behance case studies.
+const LEGACY_CARDS: Record<string, { description: string; tags: string[]; behanceUrl: string; ctaLabel: string }> = {
+  trapperaid: {
+    description:
+      "UX/UI case study for a TNR (Trap-Neuter-Return) platform, shaped by community research with TNR groups to help volunteers facilitate the TNR process.",
+    tags: RESEARCH_TAGS,
+    behanceUrl: "https://www.behance.net/gallery/200507659/TrapperAid-UXUI-Case-Study",
+    ctaLabel: "See TrapperAid Case Study",
+  },
+  petico: {
+    description:
+      "UX/UI case study for a custom pet-portrait e-commerce platform, designed around customer research and feedback.",
+    tags: [...RESEARCH_TAGS, "Midjourney", "Photoshop"],
+    behanceUrl: "https://www.behance.net/gallery/189546417/Petico-UXUI-Case-Study",
+    ctaLabel: "See Petico Case Study",
+  },
+  kawi: {
+    description: "Brand identity for a shampoo and conditioner brand - color palette, iconography, bottle labels, and a packaging system, documented in brand guidelines.",
+    tags: ["Canva", "Photoshop", "Adobe After Effects"],
+    behanceUrl: "https://www.behance.net/gallery/185578571/Kawi-Brand-Identity-Guidelines",
+    ctaLabel: "See Kawi Case Study",
+  },
+};
+const legacyWork = allWork.filter((entry) => entry.id in LEGACY_CARDS);
+---
+
+<Layout title="Work" description="Case studies from nonprofit and founder projects.">
+  <section class="mx-auto max-w-6xl px-6 pt-16 sm:pt-20">
+    <h1 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+      Nonprofit Builds - Full-Stack Development &amp; Fundraising
+    </h1>
+    <p class="mt-3 text-muted-foreground">
+      Websites, platforms, donation forms, and fundraising infrastructure for nonprofits and animal welfare - built with full-stack development, eCRM integrations, and AI tools like Claude Code.
+    </p>
+
+    <div class="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2">
+      {FEATURED_CARDS.map((card) => (
+        <CaseStudyCard
+          slug={card.slug}
+          href={card.href}
+          title={card.title}
+          tagline={card.description}
+          tags={card.tags}
+          thumbnail={card.thumbnail}
+          thumbnailVideo={card.thumbnailVideo}
+          mediaContain={card.mediaContain}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+    <h2 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+      Legacy Projects - UX/UI Case Studies &amp; Brands
+    </h2>
+    <p class="mt-3 text-muted-foreground">
+      UX/UI case studies and brand identities that show my design process - from user research and wireframes to polished visuals in Figma and Adobe Creative Suite.
+    </p>
+
+    <div class="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+      {legacyWork.map((entry) => (
+        <CaseStudyCard
+          slug={entry.id}
+          href={LEGACY_CARDS[entry.id].behanceUrl}
+          external
+          ctaLabel={LEGACY_CARDS[entry.id].ctaLabel}
+          title={entry.data.title}
+          tagline={LEGACY_CARDS[entry.id].description}
+          tags={LEGACY_CARDS[entry.id].tags}
+          thumbnail={entry.data.thumbnail}
+          thumbnailVideo={entry.data.thumbnailVideo}
+        />
+      ))}
+    </div>
+  </section>
+</Layout>

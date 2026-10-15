@@ -1,0 +1,51 @@
+---
+import { SITE } from "@/data/site";
+import { DATA } from "@/data/resume";
+
+const year = new Date().getUTCFullYear();
+---
+
+<footer class="border-t border-border">
+  <div class="mx-auto max-w-6xl px-6 py-12">
+    <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+      <div class="flex flex-col gap-3">
+        <a href="/" class="text-base font-semibold tracking-tight text-foreground">
+          {SITE.wordmark}
+        </a>
+        <a href={`mailto:${SITE.footer.email}`} class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          {SITE.footer.email}
+        </a>
+        <div class="flex items-center gap-3 pt-1">
+          {Object.entries(DATA.contact.social)
+            .filter(([, social]) => social.navbar)
+            .map(([name, social]) => (
+              <a
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={name}
+                class="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <social.icon className="size-4" />
+              </a>
+            ))}
+        </div>
+      </div>
+
+      <nav class="flex flex-wrap gap-x-8 gap-y-2">
+        {SITE.nav.map((item) => (
+          <a
+            href={item.href}
+            target={item.external ? "_blank" : undefined}
+            rel={item.external ? "noopener noreferrer" : undefined}
+            class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <p class="mt-10 text-xs text-muted-foreground">&copy; {year} {SITE.wordmark}. All rights reserved.</p>
+  </div>
+</footer>

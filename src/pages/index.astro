@@ -1,9 +1,15 @@
 ---
 export const prerender = true;
-import Layout from "../layouts/Layout.astro";
-import HomePage from "@/components/HomePage";
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/home/Hero.astro";
+import FeaturedWork from "@/components/home/FeaturedWork.astro";
+import AboutTeaser from "@/components/home/AboutTeaser.astro";
+import ContactCTA from "@/components/home/ContactCTA.astro";
 ---
 
 <Layout>
-  <HomePage client:only="react" />
+  <Hero />
+  <FeaturedWork />
+  <AboutTeaser />
+  <ContactCTA />
 </Layout>

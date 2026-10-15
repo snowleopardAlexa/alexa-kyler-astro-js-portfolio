@@ -1,0 +1,125 @@
+---
+export const prerender = true;
+import Layout from "@/layouts/Layout.astro";
+import BrowserFrame from "@/components/BrowserFrame.astro";
+import WorkMedia from "@/components/work/WorkMedia.astro";
+import { DATA } from "@/data/resume";
+
+const externalUrl = "https://catconnectionsnyc.org";
+const linkedInUrl = DATA.contact.social.LinkedIn.url;
+---
+
+<Layout
+  title="Founder Story"
+  description="The story of Cat Connections NYC, a cat rescue I founded and ran in Astoria, Queens."
+>
+  <article class="mx-auto max-w-3xl px-6 py-16 sm:py-20">
+    <a href="/about" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+      &larr; About
+    </a>
+
+    <!-- Hero -->
+    <header class="mt-8">
+      <span class="text-xs font-medium uppercase tracking-widest text-muted-foreground">Founder Story</span>
+      <h1 class="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Cat Connections NYC</h1>
+      <p class="mt-3 max-w-xl text-lg text-muted-foreground">
+        A grassroots cat rescue I founded and ran in Astoria, Queens - adoption, community-cat
+        support, and fundraising built from nothing.
+      </p>
+      <a
+        href={externalUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-5 inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90 transition-opacity"
+      >
+        Visit Cat Connections NYC &rarr;
+      </a>
+    </header>
+
+    <BrowserFrame class="mt-10 aspect-[16/10] w-full">
+      <WorkMedia title="Cat Connections NYC website" thumbnailVideo="/work/cat-connections-nyc.mp4" class="size-full" />
+    </BrowserFrame>
+
+    <div class="mt-14 flex flex-col gap-12">
+      <section>
+        <h2 class="text-xl font-semibold tracking-tight text-foreground">The Story</h2>
+        <p class="mt-4 leading-relaxed text-foreground">
+          I founded Cat Connections NYC, a grassroots cat rescue based in Astoria, Queens,
+          where I served as technical lead, fundraising director, and social media manager from the start.
+        </p>
+        <p class="mt-4 leading-relaxed text-foreground">
+          It started after I volunteered at Astoria Cat Rescue, where I met a group of people who
+          wanted to form something of their own. We set out together, and my original vision was a
+          foster-based rescue that would one day grow into a cat café. It turned out to be far
+          less simple than that.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold tracking-tight text-foreground">What It Became</h2>
+        <p class="mt-4 leading-relaxed text-foreground">
+          I built the organization's digital presence from nothing. The first website ran on
+          WordPress, with custom PHP that pulled adoptable cats through the API of Animals First,
+          our animal database software at the time. I later migrated the site to Webflow CMS, with
+          a structured content model so adoptable and adopted cats, campaigns, and impact stories
+          could be updated without a developer.
+        </p>
+        <p class="mt-4 leading-relaxed text-foreground">
+          Behind the site, I implemented two animal management systems - first Animals First, then
+          Shelterluv - and built the rescue's complex foster, adoption, and volunteer
+          applications.
+        </p>
+        <p class="mt-4 leading-relaxed text-foreground">
+          On the fundraising side, I ran campaigns across multiple platforms at once - Raisely,
+          Zeffy, GoFundMe, Reddit, Instagram, and Facebook - including community-driven posts on
+          Reddit, a channel most nonprofit sites ignore entirely. That effort raised $18,000 in
+          around six months, including a Fidelity Corporate Giving match.
+        </p>
+        <p class="mt-4 leading-relaxed text-foreground">
+          Around 50 cats found adoptive homes through Cat Connections NYC. We also took in many
+          cats with heavy medical needs - Mr. Blinks, Stevie, McLean, Charlie, Felix, and many
+          others. Most needed expensive dental treatment, several dealt with ulcers, and Mr.
+          Blinks had an overgrown conjunctiva that left his eyes half closed and required
+          corrective surgery.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold tracking-tight text-foreground">Why It Ended</h2>
+        <p class="mt-4 leading-relaxed text-foreground">
+          Rescue work is overwhelming, and as I had less and less time, I gradually became less
+          involved. The other members had their own lives and responsibilities that kept them from
+          participating fully, too. Eventually my family moved to Upstate New York for my
+          husband's job, and I paused my collaboration with Cat Connections NYC.
+        </p>
+        <p class="mt-4 leading-relaxed text-foreground">
+          The group was quiet for a while, but it's now making a small comeback, with new people
+          joining.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold tracking-tight text-foreground">Looking Back</h2>
+        <p class="mt-4 leading-relaxed text-foreground">
+          I learned a lot about animal welfare - how trapping works, what medical treatment really
+          costs, how to build and write successful fundraising campaigns, and how to run the
+          software behind a rescue, from different CRMs to beautiful, efficient donation forms.
+        </p>
+        <p class="mt-4 leading-relaxed text-foreground">
+          I also learned how hard rescue is, how demanding its day-to-day operations are, and how
+          quickly small conflicts can escalate into something bigger.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a
+            href={linkedInUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center rounded-md border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-muted transition-colors"
+          >
+            Read more about me &rarr;
+          </a>
+        </div>
+      </section>
+    </div>
+  </article>
+</Layout>

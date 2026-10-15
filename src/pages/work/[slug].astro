@@ -1,0 +1,246 @@
+---
+export const prerender = true;
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import BrowserFrame from "@/components/BrowserFrame.astro";
+import WorkMedia from "@/components/work/WorkMedia.astro";
+import PlaceholderThumb from "@/components/PlaceholderThumb.astro";
+
+export async function getStaticPaths() {
+  // Legacy projects live on Behance (linked from /work), so they get no page here.
+  const BEHANCE_ONLY = ["trapperaid", "petico", "kawi"];
+  const allWork = (await getCollection("work")).filter((entry) => !BEHANCE_ONLY.includes(entry.id));
+  return allWork.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const {
+  title, tagline, problem, role, decisions, result, gallery, externalUrl, externalLabel = "Visit live site", externalButton, draft, thumbnail, thumbnailVideo,
+  overview, built, results, tools, links, linksNote, showcase, galleryLink, galleryTitle = "Visual documentation",
+} = entry.data;
+
+// Consecutive `half` showcase items share one two-column row under the first item's title.
+type ShowcaseItem = (typeof showcase)[number];
+const showcaseGroups: { half: boolean; title?: string; items: ShowcaseItem[] }[] = [];
+for (const item of showcase) {
+  const last = showcaseGroups.at(-1);
+  if (item.half && last?.half && last.items.length < 2 && !item.title) last.items.push(item);
+  else showcaseGroups.push({ half: item.half, title: item.title, items: [item] });
+}
+---
+
+<Layout title={title} description={tagline}>
+  <article class="mx-auto max-w-3xl px-6 py-16 sm:py-20">
+    <a href="/work" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+      &larr; All work
+    </a>
+
+    {draft && (
+      <div class="mt-6 rounded-lg border border-dashed border-border bg-muted/40 px-4 py-3 text-sm text-muted-foreground">
+        This case study is a placeholder pending final copy and assets.
+      </div>
+    )}
+
+    <h1 class="mt-6 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{title}</h1>
+    <p class="mt-2 text-lg text-muted-foreground">{tagline}</p>
+    {externalUrl && (
+      <a
+        href={externalUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class={externalButton
+          ? "mt-5 inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90 transition-opacity"
+          : "mt-3 inline-block text-sm font-medium text-foreground hover:underline underline-offset-4"}
+      >
+        {externalLabel} &rarr;
+      </a>
+    )}
+
+    <BrowserFrame class="mt-8 aspect-[16/10] w-full">
+      <WorkMedia title={title} thumbnail={thumbnail} thumbnailVideo={thumbnailVideo} class="size-full" />
+    </BrowserFrame>
+
+    <div class="mt-12 flex flex-col gap-10">
+      {overview && (
+        <section>
+          <h2 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">Overview</h2>
+          <p class="mt-3 whitespace-pre-line leading-relaxed text-foreground">{overview}</p>
+        </section>
+      )}
+
+      {problem && (
+        <section>
+          <h2 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">Problem</h2>
+          <p class="mt-3 whitespace-pre-line leading-relaxed text-foreground">{problem}</p>
+        </section>
+      )}
+
+      {role && (
+        <section>
+          <h2 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">Role &amp; Approach</h2>
+          <p class="mt-3 whitespace-pre-line leading-relaxed text-foreground">{role}</p>
+        </section>
+      )}
+
+      {built.length > 0 && (
+        <section>
+          <h2 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">What I built</h2>
+          <ul class="mt-3 flex flex-col gap-2">
+            {built.map((item) => (
+              <li class="flex gap-3 leading-relaxed text-foreground">
+                <span class="mt-2 size-1 shrink-0 rounded-full bg-foreground" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {showcaseGroups.map((group) => group.half ? (
+        <section>
+          {group.title && (
+            <h2 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">{group.title}</h2>
+          )}
+          <div class={`grid grid-cols-1 items-start gap-6 sm:grid-cols-2 ${group.title ? "mt-3" : ""}`}>
+            {group.items.map((item) => (
+              <figure>
+                {item.video ? (
+                  <video src={item.src} aria-label={item.alt} class="w-full rounded-lg border border-border" autoplay loop muted playsinline controls />
+                ) : (
+                  <img src={item.src} alt={item.alt} class="w-full rounded-lg border border-border" loading="lazy" />
+                )}
+                {item.caption && (
+                  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.caption}</figcaption>
+                )}
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : group.items.map((item) => (
+        <figure>
+          {item.title && (
+            <h2 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">{item.title}</h2>
+          )}
+          {item.video ? (
+            <video src={item.src} aria-label={item.alt} class={`w-full rounded-lg border border-border ${item.title ? "mt-3" : ""}`} autoplay loop muted playsinline controls />
+          ) : (
+            <img src={item.src} alt={item.alt} class={`w-full rounded-lg border border-border ${item.title ? "mt-3" : ""}`} loading="lazy" />
+          )}
+          {item.caption && (
+            <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.caption}</figcaption>
+          )}
+          {item.linkUrl && (
+            <a
+              href={item.linkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-4 inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90 transition-opacity"
+            >
+              {item.linkLabel ?? "Visit page"} &rarr;
+            </a>
+          )}
+        </figure>
+      )))}
+
+      {decisions.length > 0 && (
+        <section>
+          <h2 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">Decisions</h2>
+          <ul class="mt-3 flex flex-col gap-2">
+            {decisions.map((item) => (
+              <li class="flex gap-3 leading-relaxed text-foreground">
+                <span class="mt-2 size-1 shrink-0 rounded-full bg-foreground" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {results.length > 0 && (
+        <section>
+          <h2 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">Results</h2>
+          <ul class="mt-3 flex flex-col gap-2">
+            {results.map((item) => (
+              <li class="flex gap-3 leading-relaxed text-foreground">
+                <span class="mt-2 size-1 shrink-0 rounded-full bg-foreground" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {tools.length > 0 && (
+        <section>
+          <h2 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">Tools used</h2>
+          <ul class="mt-3 flex flex-wrap gap-1.5">
+            {tools.map((tool) => (
+              <li class="rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs text-foreground/80">{tool}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {(links.length > 0 || linksNote) && (
+        <section>
+          <h2 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">Links</h2>
+          <div class="mt-3 flex flex-col gap-2">
+            {links.map((link) => (
+              <a href={link.url} target="_blank" rel="noopener noreferrer" class="w-fit text-sm font-medium text-foreground hover:underline underline-offset-4">
+                {link.label} &rarr;
+              </a>
+            ))}
+            {linksNote && <p class="text-sm text-muted-foreground">{linksNote}</p>}
+          </div>
+        </section>
+      )}
+
+      {(gallery.length > 0 || galleryLink) && (
+        <section>
+          <h2 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">{galleryTitle}</h2>
+          {gallery.length > 0 && (
+            <div class={`mt-4 grid grid-cols-1 gap-4 ${gallery.length > 1 ? "sm:grid-cols-2" : ""}`}>
+              {gallery.map((item) =>
+                item.placeholder || !item.src ? (
+                  <PlaceholderThumb label={item.alt} class="aspect-video w-full rounded-lg" />
+                ) : (
+                  <figure>
+                    {item.video ? (
+                      <video src={item.src} aria-label={item.alt} class="w-full rounded-lg border border-border" autoplay loop controls muted playsinline />
+                    ) : (
+                      <img src={item.src} alt={item.alt} class="w-full rounded-lg border border-border object-cover" loading="lazy" />
+                    )}
+                    {item.caption && (
+                      <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.caption}</figcaption>
+                    )}
+                  </figure>
+                )
+              )}
+            </div>
+          )}
+          {galleryLink && (
+            <a
+              href={galleryLink.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-6 inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90 transition-opacity"
+            >
+              {galleryLink.label} &rarr;
+            </a>
+          )}
+        </section>
+      )}
+
+      {/* Result closes the page, after the videos and visual documentation. */}
+      {result && (
+        <section>
+          <h2 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">Result</h2>
+          <p class="mt-3 text-xl font-medium leading-relaxed text-foreground">{result}</p>
+        </section>
+      )}
+    </div>
+  </article>
+</Layout>

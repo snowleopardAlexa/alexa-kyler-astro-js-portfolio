@@ -1,0 +1,423 @@
+---
+export const prerender = true;
+import Layout from "@/layouts/Layout.astro";
+
+const RE_FORMS = [
+  {
+    title: "Memorial Gift Form",
+    src: "/work/memorial-donation-form.mp4",
+    alt: "Memorial gift donation form in Blackbaud Raiser's Edge",
+    caption: "A memorial giving form where donors honor a loved one by dedicating a brick, a tree, or a bench.",
+  },
+  {
+    title: "Event Registration Form",
+    src: "/work/register-for-the-event-video.mp4",
+    alt: "Event registration form in Blackbaud Raiser's Edge",
+    caption: "An event registration form that collects attendee details and sends each sign-up into Raiser's Edge.",
+  },
+];
+
+const RE_BUILT = [
+  "Built custom donation forms integrated with the Raiser's Edge donor database, so every gift landed in the right constituent record",
+  "Built every kind of form the organization needed, not only donation forms - event registration forms and memorial gift purchase forms in Raiser's Edge, and even grantmaking application forms in Submittable",
+  "Troubleshot donation forms across all three sites whenever gifts, fields, or confirmations stopped working",
+  "Maintained donor data integrity, keeping records, campaigns, and appeals clean and consistent inside Raiser's Edge",
+];
+
+const RAISELY_BUILT = [
+  "Branded donation pages that matched the Cat Connections NYC identity, built in Raisely's drag-and-drop builder and customized with HTML and CSS",
+  "Campaign-specific giving pages for individual cats, each built around that cat's rescue story and medical needs",
+  "Recurring giving options so supporters could become monthly donors",
+  "Donor acknowledgment emails that thanked every supporter after their gift",
+];
+
+const PLATFORMS = [
+  { name: "Blackbaud Raiser's Edge", usedFor: "Sisters of St. Joseph", strength: "Enterprise donor management", complexity: "High" },
+  { name: "Raisely", usedFor: "Cat Connections NYC, CSJ Learning Connection", strength: "Modern nonprofit fundraising", complexity: "Medium" },
+  { name: "GoFundMe", usedFor: "Cat Connections NYC", strength: "Campaign-specific giving", complexity: "Low" },
+  { name: "DonorBox", usedFor: "CSJ Learning Connection", strength: "Embeddable forms", complexity: "Medium" },
+  { name: "Zeffy", usedFor: "Cat Connections NYC, ParaGenius Foundation", strength: "Zero-fee giving", complexity: "Low" },
+];
+
+const COMPLEXITY_STYLES: Record<string, string> = {
+  High: "bg-foreground text-background",
+  Medium: "border border-foreground text-foreground",
+  Low: "border border-border text-muted-foreground",
+};
+
+const CSJ_BUILT = [
+  "Implemented Raisely as the program's first fundraising platform",
+  "Designed and built the program's donation page and form in Raisely, matching the look of the new Webflow website",
+  "Connected the website's giving paths to the Raisely donation page, so visitors could move from learning about the program to donating in a few clicks",
+];
+
+const GOFUNDME_CAMPAIGNS = [
+  { name: "Felix", src: "/work/felix-gofundme-video.mp4" },
+  { name: "Charlie", src: "/work/charlie-gofundme-video.mp4" },
+  { name: "Stevie", src: "/work/stevie-gofundme-video.mp4" },
+];
+
+const GOFUNDME_BUILT = [
+  "Individual campaign pages for each cat in medical need, tied to a specific procedure",
+  "Campaign copy that told each cat's story clearly and honestly, so donors knew exactly who they were helping",
+  "Medical progress updates posted throughout treatment to keep donors informed and build trust",
+  "Photo and video content showing each cat's rescue and recovery",
+];
+---
+
+<Layout
+  title="eCRM & Donation Form Work"
+  description="Donation forms, giving pages, and fundraising infrastructure built across Blackbaud Raiser's Edge, Raisely, GoFundMe, DonorBox, and Zeffy."
+>
+  <article class="mx-auto max-w-3xl px-6 py-16 sm:py-20">
+    <h1 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">eCRM &amp; Donation Form Work</h1>
+    <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+      I've built and configured donation forms, giving pages, and fundraising infrastructure across
+      multiple nonprofit eCRM platforms - including Blackbaud Raiser's Edge, Raisely, GoFundMe,
+      DonorBox, and Zeffy. This page documents the real platforms I've worked in, what I built, and
+      the outcomes.
+    </p>
+
+    <section class="mt-14">
+      <h2 class="text-2xl font-semibold tracking-tight text-foreground">
+        Blackbaud Raiser's Edge - Sisters of St. Joseph Brentwood
+      </h2>
+      <p class="mt-4 leading-relaxed text-foreground">
+        A full-time role at a nonprofit running three websites, where I served as the organization's
+        primary eCRM administrator for Blackbaud Raiser's Edge.
+      </p>
+
+      <div class="mt-10 flex flex-col gap-10">
+        <div>
+          <h3 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">What I built</h3>
+          <ul class="mt-3 flex flex-col gap-2">
+            {RE_BUILT.map((item) => (
+              <li class="flex gap-3 leading-relaxed text-foreground">
+                <span class="mt-2 size-1 shrink-0 rounded-full bg-foreground" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p class="mt-8 leading-relaxed text-foreground">
+            My work went beyond donation forms - I built whatever form a program or campaign needed.
+          </p>
+          <div class="mt-4 grid grid-cols-1 gap-8 sm:grid-cols-2">
+            {RE_FORMS.map((form) => (
+              <figure>
+                <video
+                  src={form.src}
+                  aria-label={form.alt}
+                  class="aspect-[4/3] w-full rounded-lg border border-border bg-muted/40 object-contain"
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  controls
+                />
+                <figcaption class="mt-3">
+                  <span class="block text-sm font-semibold text-foreground">{form.title}</span>
+                  <span class="mt-1 block text-sm leading-relaxed text-muted-foreground">{form.caption}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">The go-to technical resource</h3>
+          <p class="mt-3 leading-relaxed text-foreground">
+            I independently diagnosed and resolved donation form failures that long-tenured staff had
+            not been able to fix - and became the organization's go-to technical resource for the
+            platform.
+          </p>
+        </div>
+
+        <figure>
+          <h3 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">Donation Forms in Raiser's Edge</h3>
+          <video
+            src="/work/donation-form-sisters-video.mp4"
+            aria-label="Sisters of St. Joseph donation form built in Blackbaud Raiser's Edge"
+            class="mt-3 w-full rounded-lg border border-border"
+            autoplay
+            loop
+            muted
+            playsinline
+            controls
+          />
+          <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">
+            I built and managed the donation forms on the website, as well as forms inside separate
+            campaigns that each required a custom build.
+          </figcaption>
+        </figure>
+
+        <div>
+          <h3 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">Platform experience</h3>
+          <p class="mt-3 leading-relaxed text-foreground">
+            Blackbaud Raiser's Edge is widely regarded as one of the most complex nonprofit CRMs on the
+            market - comparable in scope to Salesforce Nonprofit Success Pack, Engaging Networks,
+            Bloomerang, and DonorPerfect. Like these platforms, it manages the full donor lifecycle:
+            constituent records and relationship tracking, gift processing and recurring giving,
+            campaign and appeal management, custom donation form configuration, segmented
+            communications, and fundraising reporting. Having learned Raiser's Edge on the job and
+            become the organization's primary troubleshooter for donation form failures, I'm confident
+            in applying that same platform fluency to Engaging Networks.
+          </p>
+        </div>
+
+        <a
+          href="/work/sisters-of-st-joseph"
+          class="inline-flex w-fit items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90 transition-opacity"
+        >
+          See the Sisters of St. Joseph Case Study &rarr;
+        </a>
+      </div>
+    </section>
+    <section class="mt-16 border-t border-border pt-16">
+      <h2 class="text-2xl font-semibold tracking-tight text-foreground">
+        Raisely eCRM - Cat Connections NYC Fundraising Infrastructure
+      </h2>
+      <p class="mt-4 leading-relaxed text-foreground">
+        I founded Cat Connections NYC and built its fundraising from scratch - with no existing donor
+        base and no budget. Raisely became the platform that made it work.
+      </p>
+
+      <div class="mt-10 flex flex-col gap-10">
+        <div>
+          <h3 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">What I configured</h3>
+          <ul class="mt-3 flex flex-col gap-2">
+            {RAISELY_BUILT.map((item) => (
+              <li class="flex gap-3 leading-relaxed text-foreground">
+                <span class="mt-2 size-1 shrink-0 rounded-full bg-foreground" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="rounded-lg border border-border bg-muted/40 px-6 py-5">
+          <h3 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">The outcome</h3>
+          <p class="mt-2 text-3xl font-semibold tracking-tight text-foreground">$18,000+ raised in under 6 months</p>
+          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+            90% of the funds went to medical bills for the cats in our care.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <figure>
+            <video
+              src="/work/mr-blinks-video-donation-campaign.mp4"
+              aria-label="Raisely campaign page for Mr. Blinks"
+              class="aspect-[4/3] w-full rounded-lg border border-border bg-muted/40 object-contain"
+              autoplay
+              loop
+              muted
+              playsinline
+              controls
+            />
+            <figcaption class="mt-3">
+              <span class="block text-sm font-semibold text-foreground">Campaign Page for One Cat</span>
+              <span class="mt-1 block text-sm leading-relaxed text-muted-foreground">
+                Mr. Blinks' Raisely campaign, built around his rescue story and the eye surgery he needed.
+              </span>
+            </figcaption>
+          </figure>
+          <figure>
+            <video
+              src="/work/donation-builder-ccnyc-video.mp4"
+              aria-label="Walkthrough of a Cat Connections NYC donation form in Raisely"
+              class="aspect-[4/3] w-full rounded-lg border border-border bg-muted/40 object-contain"
+              autoplay
+              loop
+              muted
+              playsinline
+              controls
+            />
+            <figcaption class="mt-3">
+              <span class="block text-sm font-semibold text-foreground">Donation Form Walkthrough</span>
+              <span class="mt-1 block text-sm leading-relaxed text-muted-foreground">
+                The form fields, branding, and confirmation flow of a Raisely donation page.
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <a
+          href="/work/cat-connections-nyc-digital-fundraising"
+          class="inline-flex w-fit items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90 transition-opacity"
+        >
+          See the Digital Fundraising Case Study &rarr;
+        </a>
+      </div>
+    </section>
+
+    <section class="mt-16 border-t border-border pt-16">
+      <h2 class="text-2xl font-semibold tracking-tight text-foreground">
+        GoFundMe Campaign Pages - Individual Animal Medical Fundraising
+      </h2>
+      <p class="mt-4 leading-relaxed text-foreground">
+        Before we moved to Raisely, GoFundMe was where Cat Connections NYC raised money for cats with
+        serious medical needs - one campaign per cat, each focused on the care that cat needed.
+      </p>
+
+      <div class="mt-10 flex flex-col gap-10">
+        <div>
+          <h3 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">What I built</h3>
+          <ul class="mt-3 flex flex-col gap-2">
+            {GOFUNDME_BUILT.map((item) => (
+              <li class="flex gap-3 leading-relaxed text-foreground">
+                <span class="mt-2 size-1 shrink-0 rounded-full bg-foreground" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="rounded-lg border border-border bg-muted/40 px-6 py-5">
+          <h3 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">The outcome</h3>
+          <p class="mt-2 text-xl font-semibold tracking-tight text-foreground">
+            Multiple campaigns fully funded specific medical procedures for cats in our care.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 items-start gap-6 sm:grid-cols-3">
+          {GOFUNDME_CAMPAIGNS.map((cat) => (
+            <figure>
+              <video
+                src={cat.src}
+                aria-label={`GoFundMe campaign page for ${cat.name}`}
+                class="w-full rounded-lg border border-border bg-muted/40"
+                autoplay
+                loop
+                muted
+                playsinline
+                controls
+              />
+              <figcaption class="mt-2 text-sm font-semibold text-foreground">{cat.name}'s Campaign</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-16 border-t border-border pt-16">
+      <h2 class="text-2xl font-semibold tracking-tight text-foreground">
+        Raisely Donation Page - CSJ Learning Connection
+      </h2>
+      <p class="mt-4 leading-relaxed text-foreground">
+        CSJ Learning Connection, a Sisters of St. Joseph program that has helped immigrant women learn
+        English for more than 30 years, had no online presence and no way to accept donations online.
+        Alongside its new Webflow website, I gave the program its own donation system in Raisely.
+      </p>
+
+      <div class="mt-10 flex flex-col gap-10">
+        <div>
+          <h3 class="text-sm font-medium uppercase tracking-wide text-muted-foreground">What I built</h3>
+          <ul class="mt-3 flex flex-col gap-2">
+            {CSJ_BUILT.map((item) => (
+              <li class="flex gap-3 leading-relaxed text-foreground">
+                <span class="mt-2 size-1 shrink-0 rounded-full bg-foreground" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <figure>
+          <video
+            src="/work/csj-learning-connection-donation-campaign-video.mp4"
+            aria-label="CSJ Learning Connection donation page built in Raisely"
+            class="w-full rounded-lg border border-border"
+            autoplay
+            loop
+            muted
+            playsinline
+            controls
+          />
+          <figcaption class="mt-3">
+            <span class="block text-sm font-semibold text-foreground">CSJ Learning Connection Donation Page</span>
+            <span class="mt-1 block text-sm leading-relaxed text-muted-foreground">
+              A walkthrough of the donation page I designed and built in Raisely - from the program's
+              story and giving options to the donation form itself.
+            </span>
+          </figcaption>
+        </figure>
+
+        <a
+          href="https://csj-learning-connection-sisters-of-saint-joseph-brentwood.raiselysite.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex w-fit items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90 transition-opacity"
+        >
+          Visit Donation Page &rarr;
+        </a>
+      </div>
+    </section>
+
+    <section class="mt-16 border-t border-border pt-16">
+      <h2 class="text-2xl font-semibold tracking-tight text-foreground">
+        DonorBox &amp; Zeffy - Platform Experience
+      </h2>
+      <p class="mt-4 leading-relaxed text-foreground">
+        I've also worked with DonorBox and Zeffy - not only at Cat Connections NYC, but with other
+        nonprofits I've supported, including CSJ Learning Connection and ParaGenius Foundation.
+      </p>
+
+      <p class="mt-10 border-l-2 border-foreground pl-5 text-lg leading-relaxed text-foreground">
+        Choosing the right eCRM for a specific campaign requires understanding fee structures, donor
+        experience, integration capabilities, and organizational capacity - I've evaluated and
+        implemented multiple platforms with that lens.
+      </p>
+    </section>
+    <section class="mt-16 border-t border-border pt-16">
+      <h2 class="text-2xl font-semibold tracking-tight text-foreground">Platform Comparison</h2>
+      <p class="mt-4 leading-relaxed text-foreground">
+        A side-by-side look at the fundraising platforms I've worked in.
+      </p>
+
+      <div class="mt-8 overflow-x-auto rounded-lg border border-border">
+        <table class="w-full min-w-[560px] text-left text-sm">
+          <thead class="bg-muted/40">
+            <tr>
+              <th scope="col" class="px-4 py-3 font-medium uppercase tracking-wide text-xs text-muted-foreground">Platform</th>
+              <th scope="col" class="px-4 py-3 font-medium uppercase tracking-wide text-xs text-muted-foreground">Used for</th>
+              <th scope="col" class="px-4 py-3 font-medium uppercase tracking-wide text-xs text-muted-foreground">Key strength</th>
+              <th scope="col" class="px-4 py-3 font-medium uppercase tracking-wide text-xs text-muted-foreground">Complexity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {PLATFORMS.map((platform) => (
+              <tr class="border-t border-border align-top">
+                <th scope="row" class="px-4 py-3 font-semibold text-foreground">{platform.name}</th>
+                <td class="px-4 py-3 text-muted-foreground">{platform.usedFor}</td>
+                <td class="px-4 py-3 text-foreground">{platform.strength}</td>
+                <td class="px-4 py-3">
+                  <span class={`inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${COMPLEXITY_STYLES[platform.complexity]}`}>
+                    {platform.complexity}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="mt-16 rounded-lg border border-border bg-muted/40 px-6 py-10 sm:px-10">
+      <h2 class="text-2xl font-semibold tracking-tight text-foreground">Let's talk</h2>
+      <p class="mt-4 text-lg leading-relaxed text-foreground">
+        I'm familiar with the architecture and logic of nonprofit eCRM platforms at the implementation
+        level - form configuration, donor data flows, campaign tracking, and conversion optimization.
+        I'm actively expanding my Engaging Networks knowledge and available to discuss any of this
+        work in detail.
+      </p>
+      <a
+        href="https://www.linkedin.com/in/aleksandra-slomska-1039681b3/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-6 inline-flex items-center gap-1.5 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90 transition-opacity"
+      >
+        Contact me on LinkedIn &rarr;
+      </a>
+    </section>
+  </article>
+</Layout>

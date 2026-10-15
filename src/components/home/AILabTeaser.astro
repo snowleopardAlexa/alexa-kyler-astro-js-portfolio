@@ -1,0 +1,25 @@
+---
+// TODO(alexa): spec calls for a pull-quote here (the AI-storytelling-authenticity
+// take was flagged as a strong candidate) -- send me the actual text and I'll
+// drop it in below the framing line.
+import { SITE } from "@/data/site";
+---
+
+<section class="border-t border-border">
+  <div class="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+    <div class="mx-auto flex max-w-2xl flex-col items-center gap-5 text-center">
+      <span class="text-xs font-medium uppercase tracking-widest text-muted-foreground">Mission Driven AI Lab</span>
+      <p class="text-xl text-foreground sm:text-2xl">
+        I'm building in public: what it actually takes to use AI well, for people doing work that matters.
+      </p>
+      <a
+        href={SITE.subscribeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90 transition-opacity"
+      >
+        Subscribe
+      </a>
+    </div>
+  </div>
+</section>
