@@ -31,6 +31,17 @@ showcase:
     alt: "Wildari Planet quizz section walkthrough"
     caption: "Three quiz levels - easy, medium, and hard - each with four questions, so visitors can test their knowledge at the level that suits them."
     video: true
+  - title: "Drupal Backend"
+    src: "/work/wildari-drupal-animal-database.mp4"
+    alt: "Wildari Planet animal database in the Drupal 10 back end"
+    caption: "The animal database in Drupal 10 - custom content types for each species, organized with taxonomies for continents, animal types, and conservation status."
+    video: true
+    half: true
+  - src: "/work/wildari-drupal-people-roles.mp4"
+    alt: "Wildari Planet people and user roles in the Drupal 10 back end"
+    caption: "People and roles in Drupal - custom user roles that give each person the right level of access to manage content."
+    video: true
+    half: true
 tools: ["Drupal 10", "Astro.js", "Claude Code", "HTML5", "CSS/Sass", "JavaScript", "JSON:API", "Git", "GitHub", "Figma", "Claude Design", "Cloudflare Workers", "Drupal AI Module", "AI Automators", "Visual Studio Code", "macOS Terminal"]
 # TODO(alexa): add your live site and GitHub repo URLs, e.g.
 #   - { label: "Visit live site", url: "https://..." }
