@@ -42,6 +42,20 @@ showcase:
     caption: "People and roles in Drupal - custom user roles that give each person the right level of access to manage content."
     video: true
     half: true
+process:
+  title: "How I used Claude Code, and how I checked it"
+  intro: "I built Wildari Planet with Claude Code, and I treated everything it produced as a draft to check."
+  parts:
+    - lead: "The brand."
+      text: "I started by giving it screenshots of my Figma designs. It couldn't read the spacing well, so the padding came out too small or too big and the pages looked strange. When I gave it my hex color palette and specific technical direction, it improved quickly."
+    - lead: "Connecting Drupal to the site."
+      text: "Claude Code wrote the JSON and API code that pulls content from the Drupal backend into the frontend. It often forgot to pull data from the backend. Most of the Quick Facts icons were missing, and sometimes whole paragraphs. So I checked every page, in Drupal and on the site, to confirm the content was really there, and reminded it each time."
+    - lead: "Mobile."
+      text: "I opened the site on my phone and iPad, took screenshots of what looked wrong, and sent them to Claude Code with notes. For example, an animal's face wasn't centered on mobile, so I told it to reposition the image."
+    - lead: "Quizzes."
+      text: "I played every quiz myself. I found uneven text and inconsistencies, and I checked that right and wrong answers each behaved correctly."
+    - lead: "What I learned."
+      text: "Claude Code was wrong many times. It's fast, but it doesn't check its own work, so I did."
 tools: ["Drupal 10", "Astro.js", "Claude Code", "HTML5", "CSS/Sass", "JavaScript", "JSON:API", "Git", "GitHub", "Figma", "Claude Design", "Cloudflare Workers", "Drupal AI Module", "AI Automators", "Visual Studio Code", "macOS Terminal"]
 # TODO(alexa): add your live site and GitHub repo URLs, e.g.
 #   - { label: "Visit live site", url: "https://..." }

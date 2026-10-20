@@ -60,6 +60,14 @@ const work = defineCollection({
       )
       .default([]),
     galleryLink: z.object({ label: z.string(), url: z.string() }).optional(), // button under the gallery
+    // Text section with bold lead-ins, shown after the showcase media.
+    process: z
+      .object({
+        title: z.string(),
+        intro: z.string().optional(),
+        parts: z.array(z.object({ lead: z.string(), text: z.string() })).default([]),
+      })
+      .optional(),
     galleryTitle: z.string().optional(), // heading for the gallery; defaults to "Visual documentation"
     // Flags placeholder content shipped without final assets/copy from the client.
     draft: z.boolean().default(false),
