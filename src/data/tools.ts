@@ -188,7 +188,7 @@ export const TOOLS: Tool[] = [
     logo: GoFundMe,
     group: "eCRM & Fundraising",
     project: "Cat Connections NYC",
-    description: "Ran campaign pages as part of the multi-platform push that raised $18,000+ in five months for Cat Connections NYC.",
+    description: "Ran campaign pages as part of the multi-platform push that raised $18,000+ in about six months for Cat Connections NYC.",
     draft: true,
   },
   {
@@ -211,7 +211,7 @@ export const TOOLS: Tool[] = [
     logo: Meta,
     group: "eCRM & Fundraising",
     project: "Cat Connections NYC",
-    description: "Ran fundraisers natively on Facebook and Instagram as part of the multi-platform campaign that raised $18,000+ in five months for Cat Connections NYC.",
+    description: "Ran fundraisers natively on Facebook and Instagram as part of the multi-platform campaign that raised $18,000+ in about six months for Cat Connections NYC.",
     draft: true,
   },
   {

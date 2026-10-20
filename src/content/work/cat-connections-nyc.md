@@ -1,6 +1,6 @@
 ---
 title: "Cat Connections NYC"
-tagline: "Full CMS rebuild for a cat rescue, plus $18k raised in 5 months."
+tagline: "Full CMS rebuild for a cat rescue, plus $18k raised in about six months."
 order: 2
 featured: true
 thumbnailVideo: "/work/cat-connections-nyc.mp4"
@@ -21,7 +21,7 @@ decisions:
   - "Built the site on Webflow CMS with a structured content model so adoptable/adopted cats, campaigns, and impact stories could be updated without a developer."
   - "Ran fundraising across multiple platforms at once - Raisely, Zeffy, GoFundMe, Reddit, Instagram, and Facebook - rather than relying on a single channel."
   - "Used Reddit specifically for community-driven fundraising posts, a channel most nonprofit sites ignore entirely."
-result: "$18,000 raised in 5 months across a multi-platform campaign, including a Fidelity Corporate Giving match."
+result: "$18,000 raised in about six months across a multi-platform campaign, including a Fidelity Corporate Giving match."
 gallery:
   - src: "/ccnyc.jpg"
     alt: "Cat Connections NYC website homepage"

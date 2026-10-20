@@ -27,7 +27,7 @@ export const FEATURED_CARDS: FeaturedCard[] = [
     slug: "cat-connections-nyc-digital-fundraising",
     title: "Cat Connections NYC - Digital Fundraising Infrastructure & Form Architecture",
     description:
-      "Built complete donation form infrastructure using Raisely eCRM and GoFundMe for an animal rescue nonprofit - raising $18,000+ in under 6 months through optimized giving pages, email sequences, and Google Ad Grants campaign management.",
+      "Built complete donation form infrastructure using Raisely eCRM and GoFundMe for an animal rescue nonprofit - raising $18,000+ in about six months through optimized giving pages, email sequences, and Google Ad Grants campaign management.",
     tags: ["Raisely", "GoFundMe", "eCRM", "Donation Forms", "Mailchimp", "Google Ad Grants", "JavaScript", "HTML/CSS", "Shelterluv Adoption & Foster Forms"],
     thumbnailVideo: "/work/mr-blinks-video-donation-campaign.mp4",
   },
